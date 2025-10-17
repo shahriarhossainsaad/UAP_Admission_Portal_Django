@@ -1,0 +1,47 @@
+{% extends "admission/base.html" %}
+{% load static %}
+{% block title %}Admission Info — UAP{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/admission.css' %}">
+{% endblock %}
+{% block content %}
+  <main class="adm-main">
+    <section class="adm-intro card">
+      <h2>Admission Info</h2>
+      <p>Use the tuition & credit calculator below.</p>
+    </section>
+
+    <section class="calc-wrap card">
+      <!-- Keep your existing calculator markup; keep IDs for the JS to hook -->
+      <div class="calc-card">
+        <label>Department</label>
+        <select id="deptSelect">
+          {% for dept in departments %}
+            <option value="{{ dept.code }}" data-credits="{{ dept.total_credits }}" data-fee="{{ dept.per_credit_fee }}">{{ dept.code }}</option>
+          {% endfor %}
+        </select>
+
+        <label>Total Credits</label>
+        <input id="totalCredits" type="number" />
+        <label>Per-Credit Fee</label>
+        <input id="perCreditFee" type="number" />
+
+        <div class="calc-actions">
+          <button id="calcBtn" class="btn primary">Calculate</button>
+        </div>
+
+        <div id="calcResult" class="calc-result"></div>
+      </div>
+
+      <div class="adm-info">
+        <h3>Notes</h3>
+        <p>Fees are indicative.</p>
+      </div>
+    </section>
+  </main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/admission.js' %}"></script>
+{% endblock %}
+

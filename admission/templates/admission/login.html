@@ -1,0 +1,14 @@
+{% extends "admission/base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<div style="max-width:420px;margin:40px auto;padding:20px;background:#fff;border-radius:8px">
+  <h3>Login</h3>
+  <form method="post">
+    {% csrf_token %}
+    <label>Username<input type="text" name="username" required></label><br/>
+    <label>Password<input type="password" name="password" required></label><br/>
+    <button type="submit" class="btn primary">Login</button>
+  </form>
+</div>
+{% endblock %}
+
